@@ -28,6 +28,8 @@ test.each(['loading', 'error', 'empty', 'ready'])(
     expect(tree.getByTestId('driver.tab.home').props.accessibilityState.selected).toBe(true);
     expect(tree.getByTestId('driver.tab.route').props.accessibilityState.selected).toBe(false);
     expect(tree.queryByTestId('driver.back')).toBeNull();
+    expect(tree.getByTestId('driver.title').props.onLongPress).toBeUndefined();
+    expect(tree.queryByTestId('driver.mock.loading')).toBeNull();
   },
 );
 test('Route keeps its own header and selected tab while loading', () => {

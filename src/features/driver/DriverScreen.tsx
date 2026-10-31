@@ -125,7 +125,6 @@ export function DriverScreen({
   const { height, width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const [section, setSection] = useState<DriverSection>(review && !review.home ? 'route' : 'home');
-  const [showMock, setShowMock] = useState(false);
   const [detailTripId, setDetailTripId] = useState<string | null>(null);
   const detailReview = useMemo<DetailReview | undefined>(
     () =>
@@ -291,14 +290,7 @@ export function DriverScreen({
                   <Asset node={node} name="imgIconBack" width={20} />
                 </Pressable>
               )}
-              <Pressable
-                style={{ flex: 1 }}
-                testID="driver.title"
-                onLongPress={() => {
-                  if (__DEV__) setShowMock(!showMock);
-                }}
-                accessibilityRole="header"
-              >
+              <Pressable style={{ flex: 1 }} testID="driver.title" accessibilityRole="header">
                 <Text style={s.headerTitle}>
                   {isAccount
                     ? 'Tài khoản'
@@ -317,29 +309,6 @@ export function DriverScreen({
               <Text style={s.date}>
                 {isMessage || state === 'loading' ? 'Chuyến được phân công' : 'Thứ Sáu, 28/08/2026'}
               </Text>
-            )}
-            {showMock && (
-              <View style={s.mockPanel}>
-                <Text style={s.mockText}>Kiểm thử mock — không phải dữ liệu điều hành</Text>
-                {(['ready', 'loading', 'empty', 'error', 'revoked'] as const).map((value) => (
-                  <Action
-                    key={value}
-                    testID={`driver.mock.${value}`}
-                    label={value}
-                    onPress={() => schedule.simulate(value)}
-                  />
-                ))}
-                {schedule.selected && (
-                  <Action
-                    label="Thu hồi khi tải lại"
-                    testID="driver.mock.revoke"
-                    onPress={() => {
-                      schedule.revokeSelected();
-                      void schedule.refresh();
-                    }}
-                  />
-                )}
-              </View>
             )}
             <View style={[s.body, { minHeight: bodyHeight }]}>
               {state === 'loading' ? (
