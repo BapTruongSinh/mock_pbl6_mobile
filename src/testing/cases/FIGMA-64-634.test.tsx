@@ -1,11 +1,14 @@
 import { act, fireEvent } from '@testing-library/react-native';
 import { assertScenarioContract } from '../assertScenarioContract';
 import { getLastRenderedScenario, renderScenario } from '../renderScenario';
+import { ensureDriverScenariosRegistered } from '../scenarios/driverScenarios';
+import { getActiveScenarioId } from '../scenarios/registry';
 import { ensureLoginScenarioRegistered } from '../scenarios/FIGMA-64-634';
 
 describe('FIGMA-64-634: Customer App / Auth / Đăng nhập / 390', () => {
   beforeAll(() => {
     ensureLoginScenarioRegistered();
+    ensureDriverScenariosRegistered();
   });
 
   it('2.4.1 conforms strictly to scenario contract for FIGMA-64-634', async () => {
@@ -83,6 +86,7 @@ describe('FIGMA-64-634: Customer App / Auth / Đăng nhập / 390', () => {
     });
 
     expect(tree.queryByTestId('auth.login.errorMessage')).toBeNull();
+    expect(getActiveScenarioId()).toBe('FIGMA-35-2');
   });
 
   it('2.4.7 dispatches guest action when Guest CTA is pressed', async () => {

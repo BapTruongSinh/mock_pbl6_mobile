@@ -156,6 +156,7 @@ export function DriverScreen({
                   : '1160:18';
   const isMessage = ['empty', 'error', 'revoked'].includes(state);
   const isAccount = section === 'account';
+  const isHome = section === 'home' && state === 'ready' && !schedule.selected;
   const bodyHeight = Math.max(510, height - insets.top - insets.bottom - 200);
   const goHome = (): void => {
     setSection('home');
@@ -277,15 +278,19 @@ export function DriverScreen({
         >
           <View style={s.content}>
             <View style={s.header}>
-              <Pressable
-                accessibilityRole="button"
-                accessibilityLabel="Quay lại"
-                testID="driver.back"
-                onPress={goHome}
-                style={s.back}
-              >
-                <Asset node={node} name="imgIconBack" width={20} />
-              </Pressable>
+              {isHome ? (
+                <View style={s.headerSlot} />
+              ) : (
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel="Quay lại"
+                  testID="driver.back"
+                  onPress={goHome}
+                  style={s.back}
+                >
+                  <Asset node={node} name="imgIconBack" width={20} />
+                </Pressable>
+              )}
               <Pressable
                 style={{ flex: 1 }}
                 testID="driver.title"
@@ -306,11 +311,15 @@ export function DriverScreen({
                           : 'Chuyến của tôi'}
                 </Text>
               </Pressable>
-              <Asset node={node} name="imgIconShield" width={24} />
+              <View style={s.headerSlot}>
+                <Asset node={node} name="imgIconShield" width={24} />
+              </View>
             </View>
-            <Text style={s.date}>
-              {isMessage || state === 'loading' ? 'Chuyến được phân công' : 'Thứ Sáu, 28/08/2026'}
-            </Text>
+            {!isHome && (
+              <Text style={s.date}>
+                {isMessage || state === 'loading' ? 'Chuyến được phân công' : 'Thứ Sáu, 28/08/2026'}
+              </Text>
+            )}
             {showMock && (
               <View style={s.mockPanel}>
                 <Text style={s.mockText}>Kiểm thử mock — không phải dữ liệu điều hành</Text>
@@ -440,7 +449,7 @@ export function DriverScreen({
                       ))}
                     </View>
                   ) : (
-                    <View style={s.greeting}>
+                    <View style={s.greeting} testID="driver.home.greeting">
                       <View style={s.avatar}>
                         <Text style={s.initials}>HN</Text>
                       </View>
@@ -448,6 +457,9 @@ export function DriverScreen({
                         <Text style={s.greetingTitle}>Chào anh Nam</Text>
                         <Text style={s.intro}>
                           Hôm nay anh có {schedule.trips.length} chuyến được giao
+                        </Text>
+                        <Text style={s.homeDate} testID="driver.home.date">
+                          Thứ Sáu, 28/08/2026
                         </Text>
                       </View>
                     </View>

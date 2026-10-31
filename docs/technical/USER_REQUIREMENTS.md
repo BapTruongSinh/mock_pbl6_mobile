@@ -169,3 +169,8 @@ Bổ sung31/10: Home/Search chọn34tỉnh/thành và ngày bằng modal/lịch,
 - Xác nhận đăng xuất có hai nút cân đối: Ở lại (trung tính), Đăng xuất (đỏ). Đang xử lý thì khóa cả hai nút; áp dụng Customer và Driver dùng chung màn hình tài khoản.
 - Nội dung mẫu ở form đăng ký là placeholder màu nhạt; nội dung đã nhập giữ màu chữ chính.
 - Test tiếng Việt bằng bàn phím ảo Android. Người dùng xác nhận nhập đ hoạt động; không yêu cầu thay cấu hình bộ gõ PC.
+
+
+### Header Home Driver
+
+Home Driver bỏ nút quay lại; hai vùng hai bên tiêu đề cùng chiều rộng để giữ tiêu đề chính giữa. Cụm chào hiển thị tên → số chuyến được giao → ngày, thay vì đặt ngày giữa header và lời chào. Các màn lộ trình/chi tiết giữ điều hướng quay lại của chúng.

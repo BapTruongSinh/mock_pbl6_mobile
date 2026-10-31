@@ -13,6 +13,8 @@ export const driverStyles = StyleSheet.create({
   },
   content: { width: '100%', maxWidth: 600, flexGrow: 1 },
   header: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 40 },
+  headerSlot: { width: 36, minHeight: 40, alignItems: 'center', justifyContent: 'center' },
+  homeDate: { fontFamily: f.regular, fontSize: 11, lineHeight: 17, color: '#263D66', marginTop: 2 },
   back: {
     width: 36,
     minHeight: 40,
