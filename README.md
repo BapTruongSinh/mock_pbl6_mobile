@@ -161,6 +161,80 @@ Kết quả phải là **Success**. `-r` cập nhật app và thường giữ d�
 
 Có thể mở native project trong Android Studio bằng **Open → chọn thư mục android bên trong project vừa clone**, đặt **Gradle JDK = JDK 21**, chọn emulator rồi Run. Các file React Native/TypeScript vẫn ở `src/`; phần SDK/Gradle cần trùng cấu hình ở trên.
 
+## 5A. Điện thoại thật: ARM64 khác gì emulator?
+
+**Không cần viết lại src.** `x86_64` và `arm64-v8a` là kiến trúc CPU mà phần native của APK được biên dịch cho. Màn hình TSX, hook, style và luồng nghiệp vụ vẫn dùng cùng source. Chọn thêm ABI làm tăng thời gian build/dung lượng, không biến project thành ứng dụng khác. Xem [Android ABIs](https://developer.android.com/ndk/guides/abis).
+
+| Mục đích                             | ABI cần chọn     | Loại build                             | Có cần Metro? |
+| ------------------------------------ | ---------------- | -------------------------------------- | ------------- |
+| Review trên emulator x86_64 hiện tại | x86_64           | Debug / Development Build              | Có            |
+| Phát triển trên điện thoại ARM64     | arm64-v8a        | Debug / Development Build              | Có            |
+| Một APK debug cho cả hai nhóm trên   | x86_64,arm64-v8a | Debug / Development Build              | Có            |
+| Gửi APK độc lập cho điện thoại ARM64 | arm64-v8a        | Release có bundle JS và chữ ký phù hợp | Không         |
+
+Kiến trúc và Debug/Release là **hai lựa chọn riêng**: thêm ARM64 vào bản debug vẫn cần Metro. `arm64-v8a` cũng không có nghĩa tương thích mọi điện thoại Android, đặc biệt máy ARM 32-bit.
+
+### Chọn ABI bằng lệnh build
+
+File generated `android/gradle.properties` trên môi trường đã kiểm thử hiện đặt `reactNativeArchitectures=x86_64`. Có thể truyền ABI khi build để không phải sửa file này:
+
+```powershell
+# Debug cho điện thoại ARM64; vẫn dùng Metro.
+pnpm android:branding
+.\android\gradlew.bat -p android :app:assembleDebug --max-workers=2 -PreactNativeArchitectures=arm64-v8a --console=plain
+```
+
+Hoặc build debug chứa cả emulator và ARM64:
+
+```powershell
+.\android\gradlew.bat -p android :app:assembleDebug --max-workers=2 "-PreactNativeArchitectures=x86_64,arm64-v8a" --console=plain
+```
+
+Nếu muốn cấu hình mặc định cho native project đang có, chọn `reactNativeArchitectures=x86_64,arm64-v8a` trong android/gradle.properties. Thư mục android/ được sinh lại bằng Expo prebuild và không commit, nên các lệnh truyền `-P` ở trên dễ tái lập hơn giữa các máy. **Tài liệu này chưa thay mặc định build của dự án và chưa xác nhận build/test ARM64 trên thiết bị thật.**
+
+### Kết nối điện thoại thật để test debug
+
+1. Bật Developer options và USB debugging trên điện thoại, kết nối USB rồi chấp nhận hộp thoại cho phép máy tính debug.
+2. Kiểm tra ADB (biến `$adb` đã thiết lập ở mục 4), lấy đúng serial điện thoại:
+
+```powershell
+& $adb devices -l
+$device = Read-Host 'Nhập serial điện thoại đã kết nối'
+& $adb -s $device shell getprop ro.product.cpu.abilist
+```
+
+Nếu danh sách ABI có arm64-v8a, có thể thử APK ARM64 đã build. Cài bản debug và nối Metro đang chạy trong terminal khác:
+
+```powershell
+& $adb -s $device install -r .\android\app\build\outputs\apk\debug\app-debug.apk
+& $adb -s $device reverse tcp:8081 tcp:8081
+& $adb -s $device shell am start -a android.intent.action.VIEW -d 'exp+blue-mobile://expo-development-client/?url=http://127.0.0.1:8081' vn.blue.mobile
+```
+
+## 5B. APK độc lập để gửi cho người khác
+
+App cài trên điện thoại sẽ gọi API của BE chạy trong Docker/server qua mạng. Người dùng cuối không cần Docker, Android Studio hoặc Metro. Docker cũng có thể dùng làm môi trường build, nhưng file cài Android vẫn là APK; không phải container chứa giao diện để điện thoại chạy.
+
+Trước khi phát hành:
+
+1. Chọn ABI của thiết bị đích và thử thật trên thiết bị đó.
+2. Cấu hình release signing bằng khóa của dự án. **Native template hiện đang dùng signingConfigs.debug cho release**, nên chỉ chạy assembleRelease chưa biến app thành bản phát hành production đã ký đúng.
+3. Nếu cần dữ liệu thật, thay mock bằng adapter API, dùng địa chỉ BE HTTPS mà điện thoại truy cập được; localhost trên điện thoại là chính điện thoại, không phải máy chạy Docker. Không nhúng khóa bí mật của server vào app.
+4. Kiểm tra release đã bundle JS/assets, mở được khi tắt Metro, không còn công cụ review không phù hợp; test đăng nhập/role, camera, tải vé và các luồng quan trọng trên điện thoại.
+
+Sau khi chuẩn bị cấu hình release/signing và SDK, lệnh tham chiếu cho APK ARM64:
+
+```powershell
+pnpm android:branding
+.\android\gradlew.bat -p android :app:assembleRelease --max-workers=2 -PreactNativeArchitectures=arm64-v8a --console=plain
+```
+
+APK dự kiến ở `android/app/build/outputs/apk/release/app-release.apk`; kiểm tra output thực tế nếu cấu hình variant/signing đã thay đổi. Khóa ký, mật khẩu và thông tin riêng không commit lên Git. Không gỡ app để chữa lỗi chữ ký nếu chưa chủ ý xóa dữ liệu; bản cài đè cần cùng package/signing phù hợp. Hướng dẫn ký Android: [React Native](https://reactnative.dev/docs/signed-apk-android).
+
+Có thể chia sẻ APK đã ký qua link tải cho người dùng Android cài; cài ngoài cửa hàng có thể cần quyền cài từ nguồn đó. Google Play nhận AAB theo quy trình cửa hàng, không phải gửi AAB để người dùng bấm cài trực tiếp. Expo hỗ trợ [build APK](https://docs.expo.dev/build-reference/apk/) và [internal distribution](https://docs.expo.dev/build/internal-distribution/) như một lựa chọn build/phân phối khác; repo hiện chưa cấu hình profile EAS phát hành.
+
+**Hiện trạng:** đã kiểm chứng development APK x86_64 trên emulator. Hướng dẫn ARM64/release ở đây là bước triển khai tiếp theo, chưa phải thông báo đã có APK điện thoại thật. Có thể làm APK demo độc lập với mock trước khi nối BE, nhưng dữ liệu/giao dịch vẫn mô phỏng và không đồng bộ giữa các máy.
+
 ## 6. Nạp Metro và code vào app
 
 Metro là server đóng gói và gửi JavaScript/TypeScript của project cho Development Build.
@@ -199,7 +273,7 @@ Một Metro phục vụ được cả hai app. Mỗi emulator giữ dữ liệu/
 | Thêm thư viện có native code, đổi permission/native config, sửa Android | Cài dependency phù hợp, cập nhật native config cần thiết, build lại APK và install -r |
 | Chỉ tắt/mở lại app development                                          | Chạy Metro, reverse lại nếu cần, mở development URL                                   |
 
-Development Build khác Expo Go; dùng app **BLUE Mobile** đã build cho project này. APK development hiện tại cần Metro để nạp code; hướng dẫn này chưa bao gồm ký release APK/AAB hoặc đưa lên Play Store. Xem [hướng dẫn Development Build của Expo](https://docs.expo.dev/develop/development-builds/use-development-builds/).
+Development Build khác Expo Go; dùng app **BLUE Mobile** đã build cho project này. APK development hiện tại cần Metro để nạp code; xem mục 5B về điều kiện ký/phát hành APK; cấu hình phát hành production chưa được thực hiện. Xem [hướng dẫn Development Build của Expo](https://docs.expo.dev/develop/development-builds/use-development-builds/).
 
 ## 7. Sử dụng app
 
