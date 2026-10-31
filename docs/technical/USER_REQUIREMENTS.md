@@ -174,3 +174,5 @@ Bổ sung31/10: Home/Search chọn34tỉnh/thành và ngày bằng modal/lịch,
 ### Header Home Driver
 
 Home Driver bỏ nút quay lại; hai vùng hai bên tiêu đề cùng chiều rộng để giữ tiêu đề chính giữa. Cụm chào hiển thị tên → số chuyến được giao → ngày, thay vì đặt ngày giữa header và lời chào. Các màn lộ trình/chi tiết giữ điều hướng quay lại của chúng.
+
+Khi tải lại Home Driver, loading/error/empty không đổi tiêu đề hoặc tab đang chọn sang Lộ trình. Tab và header theo section người dùng mở; trạng thái dữ liệu chỉ thay nội dung.

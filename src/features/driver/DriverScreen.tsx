@@ -156,7 +156,7 @@ export function DriverScreen({
                   : '1160:18';
   const isMessage = ['empty', 'error', 'revoked'].includes(state);
   const isAccount = section === 'account';
-  const isHome = section === 'home' && state === 'ready' && !schedule.selected;
+  const isHome = section === 'home' && !schedule.selected;
   const bodyHeight = Math.max(510, height - insets.top - insets.bottom - 200);
   const goHome = (): void => {
     setSection('home');
@@ -302,13 +302,11 @@ export function DriverScreen({
                 <Text style={s.headerTitle}>
                   {isAccount
                     ? 'Tài khoản'
-                    : isMessage || state === 'loading'
-                      ? 'Lộ trình'
-                      : schedule.selected
-                        ? 'Thông tin chuyến'
-                        : isRoute
-                          ? 'Lộ trình'
-                          : 'Chuyến của tôi'}
+                    : schedule.selected
+                      ? 'Thông tin chuyến'
+                      : isRoute
+                        ? 'Lộ trình'
+                        : 'Chuyến của tôi'}
                 </Text>
               </Pressable>
               <View style={s.headerSlot}>
@@ -524,7 +522,7 @@ export function DriverScreen({
             ).map(([value, label, icon]) => {
               const active = isAccount
                 ? value === 'account'
-                : isRoute || isMessage || state === 'loading'
+                : isRoute
                   ? value === 'route'
                   : value === 'home';
               return (
