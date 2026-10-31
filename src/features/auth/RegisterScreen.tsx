@@ -7,10 +7,10 @@ import {
   Pressable,
   ScrollView,
   Text,
-  TextInput,
   View,
   useWindowDimensions,
   type KeyboardTypeOptions,
+  TextInput,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SvgUri } from 'react-native-svg';
@@ -148,7 +148,7 @@ export function RegisterScreen({
                     onChangeText={(value) => form.update(field.key, value)}
                     accessibilityLabel={field.label}
                     placeholder={field.placeholder}
-                    placeholderTextColor={colors.textPrimary}
+                    placeholderTextColor={colors.textSecondary}
                     autoCapitalize={field.key === 'fullName' ? 'words' : 'none'}
                     autoCorrect={false}
                     keyboardType={field.keyboard}

@@ -8,8 +8,8 @@ import {
   Pressable,
   ScrollView,
   Text,
-  TextInput,
   View,
+  TextInput,
 } from 'react-native';
 import { bookingStyles as s } from './booking.styles';
 import { bookingAssets as a } from './bookingAssets';
@@ -230,7 +230,7 @@ export function PassengerScreen({
             <Text style={s.title}>{location === 'pickup' ? 'Chọn điểm đón' : 'Chọn điểm trả'}</Text>
             {(location === 'pickup'
               ? ['Bến xe Miền Đông mới · 10:10', 'Bến xe An Sương · 09:45']
-              : ['Trung tâm Đà Lạt', 'Bến xe Đà Lạt']
+              : ['Trung tâm Lâm Đồng', 'Bến xe Lâm Đồng']
             ).map((value) => (
               <Pressable
                 key={value}

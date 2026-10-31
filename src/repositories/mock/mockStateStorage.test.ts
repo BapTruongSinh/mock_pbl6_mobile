@@ -274,7 +274,7 @@ describe('MockStateStorage & PendingIntentStorage (Appendix A Recipe 1.11)', () 
         {
           id: 'TR-204',
           origin: 'TP. Hồ Chí Minh',
-          destination: 'Đà Lạt',
+          destination: 'Lâm Đồng',
           departureAt: '2026-08-27T07:30:00+07:00',
           arrivalAt: '2026-08-27T13:45:00+07:00',
           fareVnd: 320000,

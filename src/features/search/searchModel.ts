@@ -63,7 +63,7 @@ const firstTrips: SearchTrip[] = [
     fare: 320000,
     seats: 18,
     pickup: 'Miền Đông',
-    dropoff: 'Bến xe Đà Lạt',
+    dropoff: 'Bến xe Lâm Đồng',
   },
   {
     id: 'TB105',
@@ -76,7 +76,7 @@ const firstTrips: SearchTrip[] = [
     fare: 350000,
     seats: 9,
     pickup: 'Miền Đông',
-    dropoff: 'Bến xe Đà Lạt',
+    dropoff: 'Bến xe Lâm Đồng',
   },
   {
     id: 'PT212',
@@ -89,7 +89,7 @@ const firstTrips: SearchTrip[] = [
     fare: 300000,
     seats: 22,
     pickup: 'Miền Đông',
-    dropoff: 'Bến xe Đà Lạt',
+    dropoff: 'Bến xe Lâm Đồng',
   },
   {
     id: 'NK118',
@@ -102,7 +102,7 @@ const firstTrips: SearchTrip[] = [
     fare: 380000,
     seats: 6,
     pickup: 'Miền Đông',
-    dropoff: 'Bến xe Đà Lạt',
+    dropoff: 'Bến xe Lâm Đồng',
   },
 ];
 // All services are local demo fixtures, not live availability or confirmed schedules.
@@ -119,7 +119,7 @@ export const SEARCH_TRIPS: SearchTrip[] = [
     fare: 280000 + i * 15000,
     seats: 5 + i,
     pickup: i % 2 ? 'An Sương' : 'Miền Đông',
-    dropoff: i % 2 ? 'Trung tâm Đà Lạt' : 'Bến xe Đà Lạt',
+    dropoff: i % 2 ? 'Trung tâm Lâm Đồng' : 'Bến xe Lâm Đồng',
   })),
 ];
 export function filterTrips(trips: readonly SearchTrip[], filters: SearchFilters): SearchTrip[] {

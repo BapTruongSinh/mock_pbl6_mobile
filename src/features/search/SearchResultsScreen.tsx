@@ -1,3 +1,8 @@
+import {
+  TripSearchPickers,
+  DEFAULT_SELECTION,
+  type TripSelection,
+} from '../../shared/components/TripSearchPickers';
 import { CustomerBottomNav } from '../../shared/components/CustomerBottomNav';
 import React, { useState } from 'react';
 import { Alert, FlatList, Image, Pressable, Text, View, StyleSheet } from 'react-native';
@@ -88,7 +93,7 @@ function TripCard({
         </View>
         <View style={[s.endpoint, s.right]}>
           <Text style={s.time}>{trip.arrival}</Text>
-          <Text style={s.city}>Đà Lạt</Text>
+          <Text style={s.city}>Lâm Đồng</Text>
           <Text style={s.stop}>{trip.dropoff}</Text>
         </View>
       </View>
@@ -108,6 +113,7 @@ export function SearchResultsScreen({
   onAccount,
   onSelectTrip,
   initialFilterOpen = false,
+  initialSelection,
 }: {
   onBack?: () => void;
   onHome?: () => void;
@@ -115,10 +121,15 @@ export function SearchResultsScreen({
   onAccount?: () => void;
   onSelectTrip?: (tripId: string) => void;
   initialFilterOpen?: boolean;
+  initialSelection?: TripSelection;
 }): React.ReactElement {
   const [filters, setFilters] = useState({ ...INITIAL_FILTERS });
   const [sheet, setSheet] = useState<'all' | 'vehicle' | null>(initialFilterOpen ? 'all' : null);
-  const trips = filterTrips(SEARCH_TRIPS, filters);
+  const [selection, setSelection] = useState(initialSelection ?? { ...DEFAULT_SELECTION });
+  const [picker, setPicker] = useState<'origin' | 'destination' | 'date' | null>(null);
+  const available =
+    selection.origin === 'Hồ Chí Minh' && selection.destination === 'Lâm Đồng' ? SEARCH_TRIPS : [];
+  const trips = filterTrips(available, filters);
   return (
     <View style={s.root} testID="screen.FIGMA-31-44">
       <View pointerEvents="none" style={StyleSheet.absoluteFill}>
@@ -160,24 +171,39 @@ export function SearchResultsScreen({
               </Pressable>
               <View style={s.route}>
                 <View style={s.routeCities}>
-                  <Text style={s.white}>TP.HCM</Text>
+                  <Pressable
+                    testID="search.origin"
+                    accessibilityRole="button"
+                    onPress={() => setPicker('origin')}
+                    style={{ flex: 1, minHeight: 44, justifyContent: 'center' }}
+                  >
+                    <Text style={s.white}>{selection.origin}</Text>
+                  </Pressable>
                   <View style={{ width: 80, alignItems: 'center' }}>
                     <View style={{ position: 'absolute', top: 8 }}>
                       <SearchIcon source={a.headerLine} width={80} height={2} />
                     </View>
                     <SearchIcon source={a.headerBus} width={26} height={17} />
                   </View>
-                  <Text style={s.white}>Đà Lạt</Text>
+                  <Pressable
+                    testID="search.destination"
+                    accessibilityRole="button"
+                    onPress={() => setPicker('destination')}
+                    style={{ flex: 1, minHeight: 44, justifyContent: 'center' }}
+                  >
+                    <Text style={s.white}>{selection.destination}</Text>
+                  </Pressable>
                 </View>
-                <Text style={s.count}>{trips.length} chuyến · 28/08/2026</Text>
+                <Pressable
+                  testID="search.date"
+                  accessibilityRole="button"
+                  onPress={() => setPicker('date')}
+                >
+                  <Text style={s.count}>
+                    {trips.length} chuyến · {selection.departureDate.split('-').reverse().join('/')}
+                  </Text>
+                </Pressable>
               </View>
-              <Pressable
-                accessibilityRole="button"
-                accessibilityLabel="Thu gọn, quay lại"
-                onPress={onBack}
-              >
-                <SearchIcon source={a.collapse} width={36} />
-              </Pressable>
             </View>
             <Pressable
               accessibilityRole="button"
@@ -214,7 +240,11 @@ export function SearchResultsScreen({
             showsVerticalScrollIndicator={false}
             ListEmptyComponent={
               <View style={s.empty}>
-                <Text style={s.emptyText}>Không có chuyến phù hợp với bộ lọc.</Text>
+                <Text style={s.emptyText}>
+                  {available.length
+                    ? 'Không có chuyến phù hợp với bộ lọc.'
+                    : 'Chưa có dữ liệu chuyến mô phỏng cho tuyến đã chọn.'}
+                </Text>
                 <Pressable
                   accessibilityRole="button"
                   onPress={() => setFilters({ ...INITIAL_FILTERS })}
@@ -240,6 +270,12 @@ export function SearchResultsScreen({
           </View>
         </View>
       </SafeAreaView>
+      <TripSearchPickers
+        field={picker}
+        value={selection}
+        onSelect={setSelection}
+        onClose={() => setPicker(null)}
+      />
       {sheet && (
         <SearchFilterSheet
           initial={filters}

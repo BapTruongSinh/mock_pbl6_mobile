@@ -63,14 +63,14 @@ export function SeatMapScreen({
       <ScrollView contentContainerStyle={[s.scroll, { paddingHorizontal: 16, paddingTop: 0 }]}>
         <View style={s.strip}>
           <View style={s.flex}>
-            <Text style={s.body}>TP.HCM → Đà Lạt</Text>
+            <Text style={s.body}>TP.HCM → Lâm Đồng</Text>
             <Text style={s.small}>{bookingTrip(state).departure} · Thứ Sáu, 28/08/2026</Text>
           </View>
           <View>
             <Text style={[s.small, { color: '#1F63E8' }, s.right]}>
               {bookingTrip(state).operator}
             </Text>
-            <Text style={[s.small, s.right]}>Miền Đông → Đà Lạt</Text>
+            <Text style={[s.small, s.right]}>Miền Đông → Lâm Đồng</Text>
           </View>
         </View>
         <View style={[s.card, { minHeight: 508 }]} testID="screen.FIGMA-31-89">

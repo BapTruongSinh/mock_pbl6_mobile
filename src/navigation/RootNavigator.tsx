@@ -109,15 +109,22 @@ export function RootNavigator(): React.ReactElement {
         <Stack.Screen name="CustomerHome">
           {({ navigation }) => (
             <CustomerHomeScreen
-              onSearch={() => navigation.navigate('SearchResults')}
+              onSearch={(selection) =>
+                navigation.navigate(
+                  'SearchResults',
+                  selection ? { search: { ...selection, passengerCount: 1 } } : undefined,
+                )
+              }
               onTickets={() => navigation.navigate('DemoTickets')}
               onAccount={() => navigation.navigate('CustomerAccount')}
             />
           )}
         </Stack.Screen>
         <Stack.Screen name="SearchResults">
-          {({ navigation }) => (
+          {({ navigation, route }) => (
             <SearchResultsScreen
+              key={JSON.stringify(route.params?.search)}
+              initialSelection={route.params?.search}
               onBack={() => navigation.goBack()}
               onHome={() =>
                 session?.role === 'customer'

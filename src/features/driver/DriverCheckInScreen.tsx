@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AppState, Linking, Text, TextInput, View } from 'react-native';
+import { AppState, Linking, Text, View, TextInput } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { DriverDetailFrame, type DriverDetailTab } from './DriverDetailFrame';
 import { driverManifestAssets } from './driverManifestAssets';
@@ -89,7 +89,7 @@ export function DriverCheckInScreen({
           />
         )}
         <Text style={m.cameraTitle}>
-          {tripId} | {trip?.origin ?? 'TP.HCM'} → {trip?.destination ?? 'Đà Lạt'}
+          {tripId} | {trip?.origin ?? 'TP.HCM'} → {trip?.destination ?? 'Lâm Đồng'}
         </Text>
         <View pointerEvents="none" style={m.scanFrame}>
           <Icon node={node} name="imgIconScan" size={90} />

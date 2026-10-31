@@ -85,7 +85,7 @@ export function DriverManifestScreen({
             </Text>
           </View>
           <Text style={m.route}>
-            {data?.trip.origin ?? 'TP.HCM'} → {data?.trip.destination ?? 'Đà Lạt'}
+            {data?.trip.origin ?? 'TP.HCM'} → {data?.trip.destination ?? 'Lâm Đồng'}
           </Text>
           <View style={m.row}>
             <Icon node={node} name="imgIconClock1" />

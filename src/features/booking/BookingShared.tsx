@@ -120,7 +120,7 @@ export function TripHeading({
           </Text>
         </View>
         <View style={s.route}>
-          <Text style={[s.routeTitle, s.right]}>Đà Lạt</Text>
+          <Text style={[s.routeTitle, s.right]}>Lâm Đồng</Text>
           <Text style={[s.small, s.right]}>Lâm Đồng</Text>
         </View>
       </View>

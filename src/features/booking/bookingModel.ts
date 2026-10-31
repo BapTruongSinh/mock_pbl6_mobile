@@ -39,7 +39,7 @@ export const INITIAL_BOOKING: BookingState = {
   passengers: {},
   expiresAt: null,
   pickup: 'Bến xe Miền Đông mới · 10:10',
-  dropoff: 'Trung tâm Đà Lạt',
+  dropoff: 'Trung tâm Lâm Đồng',
   error: null,
 };
 export type BookingAction =
@@ -137,7 +137,7 @@ export function bookingTrip(state: BookingState): SearchTrip {
       color: '#925BE9',
       seats: 6,
       pickup: 'Miền Đông',
-      dropoff: 'Trung tâm Đà Lạt',
+      dropoff: 'Trung tâm Lâm Đồng',
     }
   );
 }

@@ -112,8 +112,8 @@ export function MyDemoTicketsScreen({
                         />
                         <View style={s.flex}>
                           <Text style={[s.body, s.right]}>{bookingTrip(t.booking).arrival}</Text>
-                          <Text style={[s.routeTitle, s.right]}>Đà Lạt</Text>
-                          <Text style={[s.small, s.right]}>Trung tâm Đà Lạt</Text>
+                          <Text style={[s.routeTitle, s.right]}>Lâm Đồng</Text>
+                          <Text style={[s.small, s.right]}>Trung tâm Lâm Đồng</Text>
                         </View>
                       </View>
                       <View style={styles.divider} />

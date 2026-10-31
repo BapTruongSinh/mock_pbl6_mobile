@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Pressable, Text, TextInput, View } from 'react-native';
+import { Alert, Pressable, Text, View, TextInput } from 'react-native';
 import { GuestScreenLayout } from './GuestScreenLayout';
 import { guestStyles as styles } from './guest.styles';
 import { useGuestLookupForm } from './useGuestLookupForm';

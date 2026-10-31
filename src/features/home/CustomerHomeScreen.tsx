@@ -1,3 +1,8 @@
+import {
+  TripSearchPickers,
+  DEFAULT_SELECTION,
+  type TripSelection,
+} from '../../shared/components/TripSearchPickers';
 /* eslint-disable @typescript-eslint/no-require-imports */
 import { CustomerBottomNav } from '../../shared/components/CustomerBottomNav';
 import React, { useState } from 'react';
@@ -39,7 +44,13 @@ function Icon({ source, size = 20 }: { source: number; size?: number }): React.R
   return <SvgUri uri={Image.resolveAssetSource(source).uri} width={size} height={size} />;
 }
 const recommendations = [
-  { id: 'da-lat', route: 'TP.HCM → Đà Lạt', date: '28/08', price: '280.000đ', image: assets.daLat },
+  {
+    id: 'da-lat',
+    route: 'TP.HCM → Lâm Đồng',
+    date: '28/08',
+    price: '280.000đ',
+    image: assets.daLat,
+  },
   { id: 'sa-pa', route: 'Hà Nội → Sa Pa', date: '30/08', price: '320.000đ', image: assets.saPa },
   { id: 'hue', route: 'Đà Nẵng → Huế', date: '01/09', price: '150.000đ', image: assets.hue },
 ];
@@ -51,14 +62,17 @@ export function CustomerHomeScreen({
   onTickets,
   onAccount,
 }: {
-  onSearch?: () => void;
+  onSearch?: (selection?: TripSelection) => void;
   onTickets?: () => void;
   onAccount?: () => void;
 }): React.ReactElement {
   const { width, fontScale } = useWindowDimensions();
   const { weather, refresh: refreshWeather } = useLocalWeather();
-  const [origin, setOrigin] = useState('Thành phố Hồ Chí Minh');
-  const [destination, setDestination] = useState('Đà Lạt');
+  const [selection, setSelection] = useState({ ...DEFAULT_SELECTION });
+  const [picker, setPicker] = useState<'origin' | 'destination' | 'date' | null>(null);
+  const origin = selection.origin,
+    destination = selection.destination;
+  const openSearch = (): void => onSearch?.(selection);
   const [filter, setFilter] = useState('Tất cả');
   return (
     <View style={styles.root} testID="screen.FIGMA-31-2">
@@ -134,7 +148,7 @@ export function CustomerHomeScreen({
                     collapsable={false}
                     style={styles.field}
                     accessibilityRole="button"
-                    onPress={() => pending(field.label)}
+                    onPress={() => setPicker(field.label === 'Điểm đi' ? 'origin' : 'destination')}
                   >
                     <Icon source={field.icon} />
                     <View style={styles.fieldText}>
@@ -149,8 +163,7 @@ export function CustomerHomeScreen({
                   accessibilityLabel="Đổi điểm đi và điểm đến"
                   testID="home.swap"
                   onPress={() => {
-                    setOrigin(destination);
-                    setDestination(origin);
+                    setSelection({ ...selection, origin: destination, destination: origin });
                   }}
                 >
                   <Icon source={assets.swap} size={16} />
@@ -159,11 +172,14 @@ export function CustomerHomeScreen({
               <Pressable
                 style={styles.date}
                 accessibilityRole="button"
-                onPress={() => pending('Ngày đi')}
+                testID="home.dateField"
+                onPress={() => setPicker('date')}
               >
                 <Icon source={assets.date} />
                 <Text style={styles.label}>Ngày đi</Text>
-                <Text style={styles.dateValue}>28.08</Text>
+                <Text style={styles.dateValue}>
+                  {selection.departureDate.slice(8) + '.' + selection.departureDate.slice(5, 7)}
+                </Text>
               </Pressable>
             </View>
             <Pressable
@@ -193,14 +209,14 @@ export function CustomerHomeScreen({
                   <Text style={styles.operator}>BLUE Express</Text>
                   <Text style={styles.recommend}>ĐỀ XUẤT</Text>
                 </View>
-                <Text style={styles.tripTitle}>TP.HCM → Đà Lạt</Text>
+                <Text style={styles.tripTitle}>TP.HCM → Lâm Đồng</Text>
                 <Text style={styles.tripInfo}>Thứ Sáu, 28/08 · 07:30</Text>
                 <Text style={styles.tripInfo}>Ghế A01 · Cổng 3</Text>
               </View>
             </Pressable>
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Gợi ý hành trình</Text>
-              <Pressable accessibilityRole="button" onPress={onSearch}>
+              <Pressable accessibilityRole="button" onPress={openSearch}>
                 <Text style={styles.link}>Xem tất cả</Text>
               </Pressable>
             </View>
@@ -253,7 +269,7 @@ export function CustomerHomeScreen({
             active="home"
             onNavigate={(tab) =>
               tab === 'search'
-                ? onSearch?.()
+                ? openSearch()
                 : tab === 'tickets'
                   ? onTickets?.()
                   : tab === 'account'
@@ -263,6 +279,12 @@ export function CustomerHomeScreen({
           />
         </View>
       </SafeAreaView>
+      <TripSearchPickers
+        field={picker}
+        value={selection}
+        onSelect={setSelection}
+        onClose={() => setPicker(null)}
+      />
     </View>
   );
 }

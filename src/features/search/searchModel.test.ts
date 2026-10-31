@@ -10,7 +10,7 @@ test('combines operator, vehicle, time, stops and inclusive fare boundaries', ()
     period: 'morning',
     time: '07:30',
     pickup: 'Miền Đông',
-    dropoff: 'Bến xe Đà Lạt',
+    dropoff: 'Bến xe Lâm Đồng',
     minFare: '320000',
     maxFare: '320000',
   });

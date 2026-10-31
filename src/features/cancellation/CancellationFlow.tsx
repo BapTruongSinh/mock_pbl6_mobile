@@ -302,7 +302,7 @@ export function CancellationFlow({
                   <View style={s.paymentSummary}>
                     <View style={s.spread}>
                       <View style={s.flex}>
-                        <Text style={s.body}>TP.HCM → Đà Lạt</Text>
+                        <Text style={s.body}>TP.HCM → Lâm Đồng</Text>
                         <Text style={s.small}>
                           {trip.operator} · 28/08 · {trip.departure}
                         </Text>

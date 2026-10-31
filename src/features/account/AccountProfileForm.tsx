@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, Pressable } from 'react-native';
+import { View, Text, Pressable, TextInput } from 'react-native';
 import type { AccountController } from './useAccount';
 import { accountStyles as s } from './account.styles';
 export function AccountProfileForm({

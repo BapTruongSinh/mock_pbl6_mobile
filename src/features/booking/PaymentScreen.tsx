@@ -80,7 +80,7 @@ export function PaymentScreen({
           <View style={s.row}>
             <Image source={a.bus} style={{ width: 34, height: 34 }} />
             <View style={s.flex}>
-              <Text style={s.body}>TP.HCM → Đà Lạt</Text>
+              <Text style={s.body}>TP.HCM → Lâm Đồng</Text>
               <Text style={s.small}>
                 {bookingTrip(state).operator} · 28/08 · {bookingTrip(state).departure}
               </Text>

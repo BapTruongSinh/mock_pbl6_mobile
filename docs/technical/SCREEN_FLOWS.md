@@ -163,3 +163,6 @@ Mở bằng `bluemobile://debug/case/<case>`, hoặc lệnh ADB ở README. Dùn
 Nguồn nối route: `src/navigation/RootNavigator.tsx`, `src/features/booking/BookingFlowScreen.tsx`, `src/features/driver/DriverScreen.tsx`, các file `src/testing/scenarios/`. Node 1146:1196 là **lỗi hồ sơ**, hết phiên là case bổ sung DRIVER-SESSION-EXPIRED; pending hoàn thành là NEW-DRIVER-COMPLETION-PENDING.
 
 Khi thay đổi luồng, sửa cả sơ đồ và bảng hiện hành; không chỉ thêm đoạn lịch sử trái với dòng cũ. Chi tiết yêu cầu đã chốt và phần chưa triển khai nằm trong [USER_REQUIREMENTS.md](USER_REQUIREMENTS.md).
+
+
+Bổ sung31/10: Home/Search chọn34tỉnh/thành và ngày bằng modal/lịch, Home truyền selection sang Search; bỏ mũi tên xuống. [Chi tiết picker và giới hạn mock](PROVINCE_DATE_PICKERS.md).

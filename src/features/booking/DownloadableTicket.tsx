@@ -15,7 +15,7 @@ export const DownloadableTicket = forwardRef<View, { state: BookingState }>(
           <Text style={s.green}>ĐÃ PHÁT HÀNH · VÉ MÔ PHỎNG</Text>
           <Text style={[s.label, { marginLeft: 'auto' }]}>CHUYẾN {bookingTrip(state).id}</Text>
         </View>
-        <Text style={s.title}>TP. Hồ Chí Minh → Đà Lạt</Text>
+        <Text style={s.title}>TP. Hồ Chí Minh → Lâm Đồng</Text>
         <Text style={s.text}>Thứ Sáu, 28/08/2026 · Khởi hành {bookingTrip(state).departure}</Text>
         <View style={s.body}>
           <View style={s.left}>
@@ -31,7 +31,7 @@ export const DownloadableTicket = forwardRef<View, { state: BookingState }>(
               </View>
               <View>
                 <Text style={s.time}>{bookingTrip(state).arrival}</Text>
-                <Text style={s.text}>Đà Lạt</Text>
+                <Text style={s.text}>Lâm Đồng</Text>
               </View>
             </View>
             <View style={s.grid}>

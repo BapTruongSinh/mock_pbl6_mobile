@@ -336,6 +336,12 @@ Ví dụ: `FIGMA-650-4` Welcome; `FIGMA-64-634` Login; `FIGMA-64-638` Register; 
 
 Có thể kiểm port bằng `Get-NetTCPConnection -LocalPort 8081 -State Listen`. Không chạy xóa data/cache hoặc kill mọi tiến trình Java/Node để chữa một lỗi chưa xác định.
 
+### Nhập tiếng Việt khi thử trên emulator
+
+Dùng **bàn phím ảo tiếng Việt trong Android emulator** để nhập tên, địa điểm và các nội dung có dấu, bao gồm chữ `đ`. Khi bàn phím ảo không hiện, bật tùy chọn hiển thị bàn phím ảo trong phần cài đặt bàn phím Android.
+
+Bàn phím PC qua UniKey và bàn phím Android dùng cơ chế bộ gõ khác nhau; chuyển phím qua emulator có thể làm chữ `đ` biến mất hoặc thành `dd`. Người dùng đã xác nhận nhập bằng bàn phím ảo hoạt động. Không sửa cấu hình UniKey toàn máy hoặc thay `dd` thành `đ` trong app. Test truyền chuỗi Unicode không thay thế kiểm tra bộ gõ thật.
+
 ## 9. Kiểm tra code và tài liệu liên quan
 
 ```powershell

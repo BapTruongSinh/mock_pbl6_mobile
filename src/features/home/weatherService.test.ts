@@ -21,17 +21,13 @@ test('granted location uses rounded coordinates and returns real current values'
     .mocked(Location.requestForegroundPermissionsAsync)
     .mockResolvedValue({ granted: true } as Location.LocationPermissionResponse);
   jest.mocked(Location.hasServicesEnabledAsync).mockResolvedValue(true);
-  jest
-    .mocked(Location.getCurrentPositionAsync)
-    .mockResolvedValue({
-      coords: { latitude: 10.776543, longitude: 106.701234 },
-    } as Location.LocationObject);
-  const fetchMock = jest
-    .spyOn(global, 'fetch')
-    .mockResolvedValue({
-      ok: true,
-      json: async () => ({ current: { temperature_2m: 29.4, weather_code: 95 } }),
-    } as Response);
+  jest.mocked(Location.getCurrentPositionAsync).mockResolvedValue({
+    coords: { latitude: 10.776543, longitude: 106.701234 },
+  } as Location.LocationObject);
+  const fetchMock = jest.spyOn(global, 'fetch').mockResolvedValue({
+    ok: true,
+    json: async () => ({ current: { temperature_2m: 29.4, weather_code: 95 } }),
+  } as Response);
   expect(await loadLocalWeather(new AbortController().signal)).toEqual({
     temperature: 29,
     description: 'Giông',

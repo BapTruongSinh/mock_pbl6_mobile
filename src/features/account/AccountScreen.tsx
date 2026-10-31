@@ -9,8 +9,8 @@ import {
   Pressable,
   ScrollView,
   Text,
-  TextInput,
   View,
+  TextInput,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { CustomerBottomNav, type CustomerTab } from '../../shared/components/CustomerBottomNav';
@@ -158,22 +158,29 @@ export function AccountScreen({
                   <View style={s.card}>
                     <Text style={s.section}>Đăng xuất khỏi tài khoản?</Text>
                     <Text style={s.hint}>Bạn có thể đăng nhập lại bất cứ lúc nào.</Text>
-                    <Pressable
-                      disabled={account.busy}
-                      accessibilityRole="button"
-                      testID="account.logout.confirm"
-                      onPress={() => void account.logout().then(onLogout)}
-                      style={s.logout}
-                    >
-                      <Text style={s.logoutText}>Xác nhận đăng xuất</Text>
-                    </Pressable>
-                    <Pressable
-                      accessibilityRole="button"
-                      onPress={() => setLogoutConfirm(false)}
-                      style={s.changePhoto}
-                    >
-                      <Text style={s.link}>Ở lại</Text>
-                    </Pressable>
+                    <View style={s.logoutActions}>
+                      <Pressable
+                        accessibilityRole="button"
+                        testID="account.logout.cancel"
+                        disabled={account.busy}
+                        onPress={() => setLogoutConfirm(false)}
+                        style={[s.stayButton, account.busy && s.disabled]}
+                      >
+                        <Text style={s.stayText}>Ở lại</Text>
+                      </Pressable>
+                      <Pressable
+                        disabled={account.busy}
+                        accessibilityRole="button"
+                        accessibilityState={{ disabled: account.busy }}
+                        testID="account.logout.confirm"
+                        onPress={() => void account.logout().then(onLogout)}
+                        style={[s.confirmLogout, account.busy && s.disabled]}
+                      >
+                        <Text style={s.confirmLogoutText}>
+                          {account.busy ? 'Đang đăng xuất…' : 'Đăng xuất'}
+                        </Text>
+                      </Pressable>
+                    </View>
                   </View>
                 ) : (
                   <Pressable

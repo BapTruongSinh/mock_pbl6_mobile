@@ -159,3 +159,13 @@ Quy tắc Driver bị khóa phải kiểm cả ở repository, không chỉ đ�
 - Plan đã viết hoặc review link tồn tại không có nghĩa mọi mục trong plan đã hoàn thành.
 
 Chi tiết kỹ thuật: [DRIVER_ACTIONS_AND_ACCOUNT.md](DRIVER_ACTIONS_AND_ACCOUNT.md), [DRIVER_MANIFEST_CHECKIN.md](DRIVER_MANIFEST_CHECKIN.md), [API_HANDOFF.md](API_HANDOFF.md). Nếu triển khai thay đổi mới, cập nhật file này và flow, không chỉ thêm một dòng lịch sử mâu thuẫn.
+
+
+Bổ sung31/10: Home/Search chọn34tỉnh/thành và ngày bằng modal/lịch, Home truyền selection sang Search; bỏ mũi tên xuống. [Chi tiết picker và giới hạn mock](PROVINCE_DATE_PICKERS.md).
+
+
+### Điều chỉnh tài khoản và nhập liệu (31/10/2026)
+
+- Xác nhận đăng xuất có hai nút cân đối: Ở lại (trung tính), Đăng xuất (đỏ). Đang xử lý thì khóa cả hai nút; áp dụng Customer và Driver dùng chung màn hình tài khoản.
+- Nội dung mẫu ở form đăng ký là placeholder màu nhạt; nội dung đã nhập giữ màu chữ chính.
+- Test tiếng Việt bằng bàn phím ảo Android. Người dùng xác nhận nhập đ hoạt động; không yêu cầu thay cấu hình bộ gõ PC.

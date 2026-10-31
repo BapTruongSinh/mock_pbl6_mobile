@@ -141,7 +141,7 @@ export function buildSeedSnapshot(seed: string, nowMs: number): MockStateSnapsho
   const trip: Trip = {
     id: 'TR-204',
     origin: 'TP. Hồ Chí Minh',
-    destination: 'Đà Lạt',
+    destination: 'Lâm Đồng',
     departureAt: '2026-08-27T07:30:00+07:00',
     arrivalAt: '2026-08-27T13:45:00+07:00',
     fareVnd: 320000,
@@ -162,8 +162,8 @@ export function buildSeedSnapshot(seed: string, nowMs: number): MockStateSnapsho
     dropoffStops: [
       {
         id: 'STOP-DO-1',
-        name: 'Bến xe Liên tỉnh Đà Lạt',
-        address: '01 Tô Hiến Thành, Phường 3, Đà Lạt',
+        name: 'Bến xe Liên tỉnh Lâm Đồng',
+        address: '01 Tô Hiến Thành, Phường 3, Lâm Đồng',
       },
     ],
   };
