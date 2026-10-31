@@ -1,0 +1,23 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="26" height="17" viewBox="0 0 26 17" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Icon / Bus">
+<path id="Bus / Body" d="M4 2.7H22C23.2703 2.7 24.3 3.72975 24.3 5V10C24.3 11.2703 23.2703 12.3 22 12.3H4C2.72975 12.3 1.7 11.2703 1.7 10V5C1.7 3.72975 2.72975 2.7 4 2.7Z" stroke-width="1.4" stroke="white"/>
+<rect id="Bus / Window" x="4" y="5" width="3" height="3.5" rx="0.7" fill="white" fill-opacity="0.9"/>
+<rect id="Bus / Window_2" x="8" y="5" width="3" height="3.5" rx="0.7" fill="white" fill-opacity="0.9"/>
+<rect id="Bus / Window_3" x="12" y="5" width="3" height="3.5" rx="0.7" fill="white" fill-opacity="0.9"/>
+<rect id="Bus / Window_4" x="16" y="5" width="3" height="3.5" rx="0.7" fill="white" fill-opacity="0.9"/>
+<g id="Bus / Door">
+<use xlink:href="#stroke0_0_37" fill="white" fill-opacity="0.35"/>
+<mask id="stroke1_0_37" fill="white">
+<use xlink:href="#stroke0_0_37"/>
+</mask>
+<path d="M20.6 11H21.9C22.2314 11 22.5 10.7314 22.5 10.4V5.6C22.5 5.26863 22.2314 5 21.9 5H20.6C20.2686 5 20 5.26863 20 5.6V10.4C20 10.7314 20.2686 11 20.6 11Z" stroke-width="1.4" stroke="white" mask="url(#stroke1_0_37)"/>
+</g>
+<circle id="Bus / Wheel" cx="7" cy="13" r="2" fill="white"/>
+<circle id="Bus / Hub" cx="7" cy="13" r="0.8" fill="#6685F0"/>
+<circle id="Bus / Wheel_2" cx="20" cy="13" r="2" fill="white"/>
+<circle id="Bus / Hub_2" cx="20" cy="13" r="0.8" fill="#6685F0"/>
+</g>
+<defs>
+<path id="stroke0_0_37" d="M20 5.6C20 5.26863 20.2686 5 20.6 5H21.9C22.2314 5 22.5 5.26863 22.5 5.6V10.4C22.5 10.7314 22.2314 11 21.9 11H20.6C20.2686 11 20 10.7314 20 10.4V5.6Z"/>
+</defs>
+</svg>

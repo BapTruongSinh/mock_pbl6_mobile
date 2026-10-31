@@ -1,0 +1,16 @@
+appId: vn.blue.mobile
+---
+- launchApp:
+    appId: vn.blue.mobile
+    stopApp: false
+- openLink: 'bluemobile://debug/case/FOUNDATION-SMOKE'
+- assertVisible:
+    id: 'screen.FOUNDATION-SMOKE'
+- assertVisible:
+    id: 'foundation.anchor'
+- assertVisible:
+    text: 'Sẵn sàng'
+- tapOn:
+    id: 'foundation.toggle'
+- assertVisible:
+    text: 'Đã chạm'

@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="386" height="642" viewBox="0 0 386 642" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Ticket / Perforated background" filter="url(#filter0_d_0_30)">
+<path d="M336 16C349.255 16 360 26.7452 360 40V253C353.925 253 349 257.925 349 264C349 270.075 353.925 275 360 275V410C353.925 410 349 414.925 349 421C349 427.075 353.925 432 360 432V582C360 595.255 349.255 606 336 606H50C36.7452 606 26 595.255 26 582V432C32.0751 432 37 427.075 37 421C37 414.925 32.0751 410 26 410V275C32.0751 275 37 270.075 37 264C37 257.925 32.0751 253 26 253V40C26 26.7452 36.7452 16 50 16H336Z" fill="#FCFDFF"/>
+</g>
+<defs>
+<filter id="filter0_d_0_30" x="0" y="0" width="386" height="642" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="10"/>
+<feGaussianBlur stdDeviation="13"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.04 0 0 0 0 0.1 0 0 0 0 0.24 0 0 0 0.14 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_30"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_30" result="shape"/>
+</filter>
+</defs>
+</svg>

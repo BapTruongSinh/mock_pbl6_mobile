@@ -1,0 +1,11 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="110" height="32" viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Route / Bus line">
+<path id="Vector" d="M7 19C8.65685 19 10 17.6569 10 16C10 14.3431 8.65685 13 7 13C5.34315 13 4 14.3431 4 16C4 17.6569 5.34315 19 7 19Z" fill="white" stroke-width="1.7" stroke="#246BEA"/>
+<path id="Vector_2" d="M103 19C104.657 19 106 17.6569 106 16C106 14.3431 104.657 13 103 13C101.343 13 100 14.3431 100 16C100 17.6569 101.343 19 103 19Z" fill="white" stroke-width="1.7" stroke="#246BEA"/>
+<path id="Vector_3" d="M12 16H13.5536M41 16H39.4464M69 16H70.5536M98 16H96.4464M17.6964 16H20.8036M24.9464 16H28.0536M32.1964 16H35.3036M74.6964 16H77.8036M81.9464 16H85.0536M89.1964 16H92.3036" stroke-width="1.7" stroke-linecap="round" stroke="#8BB2FF"/>
+<path id="Vector_4" d="M64 10H46C43.7909 10 42 11.7909 42 14V19C42 21.2091 43.7909 23 46 23H64C66.2091 23 68 21.2091 68 19V14C68 11.7909 66.2091 10 64 10Z" fill="#246BEA"/>
+<path id="Vector_5" d="M46 13H64M47 16H50M52 16H55M57 16H60M62 16H64" stroke-width="1.3" stroke-linecap="round" stroke="white"/>
+<path id="Vector_6" d="M48 26C49.1046 26 50 25.1046 50 24C50 22.8954 49.1046 22 48 22C46.8954 22 46 22.8954 46 24C46 25.1046 46.8954 26 48 26Z" fill="#246BEA"/>
+<path id="Vector_7" d="M62 26C63.1046 26 64 25.1046 64 24C64 22.8954 63.1046 22 62 22C60.8954 22 60 22.8954 60 24C60 25.1046 60.8954 26 62 26Z" fill="#246BEA"/>
+</g>
+</svg>

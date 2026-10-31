@@ -1,0 +1,26 @@
+appId: vn.blue.mobile
+---
+- launchApp:
+    appId: vn.blue.mobile
+    stopApp: false
+- openLink: 'bluemobile://debug/case/FIGMA-64-634'
+- assertVisible:
+    id: 'screen.FIGMA-64-634'
+- assertVisible:
+    id: 'auth.login.form'
+- assertVisible:
+    id: 'auth.login.brandLogo'
+- assertVisible:
+    text: 'Hành trình đang chờ bạn'
+- assertVisible:
+    text: 'Đăng nhập để tiếp tục chuyến đi'
+- assertVisible:
+    id: 'auth.login.identifierInput'
+- assertVisible:
+    id: 'auth.login.passwordInput'
+- assertVisible:
+    id: 'auth.login.submit'
+- assertVisible:
+    id: 'auth.login.guestButton'
+- tapOn:
+    id: 'auth.login.rememberCheckbox'

@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="350" height="154" viewBox="18 11 350 154" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Ticket / True background" filter="url(#filter0_d_0_24)">
+<path d="M350 11C359.941 11 368 19.0589 368 29V79C363.029 79 359 83.0294 359 88C359 92.9706 363.029 97 368 97V147C368 156.941 359.941 165 350 165H36C26.0589 165 18 156.941 18 147V97C22.9706 97 27 92.9706 27 88C27 83.0294 22.9706 79 18 79V29C18 19.0589 26.0589 11 36 11H350Z" fill="white"/>
+</g>
+<defs>
+<filter id="filter0_d_0_24" x="0" y="0" width="386" height="190" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="7"/>
+<feGaussianBlur stdDeviation="9"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.07 0 0 0 0 0.12 0 0 0 0 0.28 0 0 0 0.11 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_24"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_24" result="shape"/>
+</filter>
+</defs>
+</svg>

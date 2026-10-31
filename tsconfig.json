@@ -1,0 +1,25 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": false,
+    "jsx": "react-jsx",
+    "types": ["jest", "node"]
+  },
+  "include": ["index.ts", "app.config.ts", "src/**/*.ts", "src/**/*.tsx"],
+  "exclude": [
+    "node_modules",
+    ".claude",
+    ".tools",
+    ".cache",
+    ".scaffold",
+    "artifacts",
+    "android",
+    "ios",
+    "coverage",
+    "dist"
+  ]
+}

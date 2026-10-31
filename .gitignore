@@ -1,0 +1,67 @@
+# Dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native generated & build outputs
+android/
+ios/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.keystore
+
+# Project local caches, tools, scaffold, and test/run artifacts
+.cache/
+.tools/
+.scaffold/
+artifacts/
+coverage/
+
+# Logs & OS files
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.pnpm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Local env files
+.env*.local
+
+# Private agent instructions, rules, planning and task history
+.claude/
+.agents/
+.codex/
+skills/
+.skill/
+.tasks/
+AGENTS.md
+CLAUDE.md
+START_HERE.md
+TODO.md
+docs/superpowers/
+docs/technical/AGENT_EXECUTION_WORKFLOW.md
+docs/technical/RULES_ADAPTATION.md
+docs/technical/PLAN_*
+docs/technical/UI_REVIEW_LESSONS.md
+
+# Secrets and machine-local configuration
+.env
+.env.*
+!.env.example
+!.env.sample
+local.properties
+*.pem
+*.pfx
+*.p12
+*.crt
+*.log
+*.apk
+*.aab
