@@ -17,3 +17,8 @@ Tài liệu quản lý nguồn gốc, kích thước và SHA256 của toàn bộ
 1. Mọi asset mới ở các Plan 02–12 phải ghi rõ `nodeId`, `localPath`, `callsite`, `intrinsicSize`, `renderedSize`, `resizeMode`, và `SHA256` vào bảng trên trước khi nghiệm thu case.
 2. Case bổ sung (`source-derived`) tái sử dụng asset từ frame Figma gốc đã xác minh, không bịa `nodeId` giả.
 3. Unit test trong `src/testing/plans/plan01.test.ts` kiểm chứng trực tiếp sự tồn tại của file local và đối chiếu SHA256 với bảng này.
+
+
+## Android branding
+
+icon.png và adaptive-icon.png trong src/shared/assets/app là canvas native được tạo từ logo chính thức brand-blue-logo.png (Figma644:49), không thay nội dung logo. Icon1024px/padding100; adaptive1024px/padding220, nền trắng, contain. Callsite app.config.ts → Expo Android mipmap resources; splash qua scripts/sync-android-branding.mjs. Chi tiết ANDROID_BRANDING.md.

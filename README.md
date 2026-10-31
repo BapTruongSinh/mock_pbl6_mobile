@@ -140,10 +140,11 @@ Sau đó mới ghi `android/local.properties` như trên. Không chạy `prebuil
 Emulator phải đang mở. Trong PowerShell tại Mobile, sau khi đặt `JAVA_HOME` đúng:
 
 ```powershell
+pnpm android:branding
 .\android\gradlew.bat -p android :app:assembleDebug --max-workers=2 -PreactNativeArchitectures=x86_64 --console=plain
 ```
 
-Chỉ tiếp tục nếu có **BUILD SUCCESSFUL**. APK nằm tại:
+`pnpm android:branding` đồng bộ icon BLUE và splash native từ asset gốc; chạy lại sau mỗi lần Expo prebuild để giữ đúng nhận diện. Chỉ tiếp tục nếu có **BUILD SUCCESSFUL**. APK nằm tại:
 
 ```text
 android/app/build/outputs/apk/debug/app-debug.apk

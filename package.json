@@ -14,13 +14,14 @@
     "test": "jest",
     "test:coverage": "jest --coverage --runInBand",
     "dev": "expo start --dev-client",
-    "android:build": "expo run:android --variant debug --no-bundler",
+    "android:build": "pnpm android:branding && expo run:android --variant debug --no-bundler",
     "android:smoke": "node scripts/android-smoke.mjs",
     "test:native:case": "node scripts/run-case.mjs",
     "capture:case": "node scripts/capture-case.mjs",
     "test:visual:case": "node scripts/check-visual.mjs",
     "test:layout:case": "node scripts/check-layout.mjs",
-    "test:a11y:case": "node scripts/check-a11y.mjs"
+    "test:a11y:case": "node scripts/check-a11y.mjs",
+    "android:branding": "node scripts/sync-android-branding.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "5.9.2",

@@ -8,8 +8,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   orientation: 'default',
   scheme: 'bluemobile',
   userInterfaceStyle: 'light',
+  icon: './src/shared/assets/app/icon.png',
   android: {
     package: 'vn.blue.mobile',
+    adaptiveIcon: {
+      foregroundImage: './src/shared/assets/app/adaptive-icon.png',
+      backgroundColor: '#FFFFFF',
+    },
     permissions: [
       'android.permission.CAMERA',
       'android.permission.ACCESS_COARSE_LOCATION',
